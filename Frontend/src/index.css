@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-primary-50 text-primary-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-800 hover:bg-primary-900 text-white font-medium py-2 px-4 rounded-md transition-all duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-white hover:bg-primary-50 text-primary-700 border border-primary-200 font-medium py-2 px-4 rounded-md transition-all duration-200;
+  }
+  
+  .btn-accent {
+    @apply bg-accent-600 hover:bg-accent-700 text-white font-medium py-2 px-4 rounded-md transition-all duration-200;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg border border-primary-100 p-6;
+  }
+  
+  .input-field {
+    @apply w-full px-3 py-2 bg-white border border-primary-200 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-400 focus:border-primary-400 transition-all duration-200;
+  }
+  
+  .status-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium tracking-wide;
+  }
+  
+  .status-open {
+    @apply bg-red-50 text-red-700 border border-red-100;
+  }
+  
+  .status-progress {
+    @apply bg-amber-50 text-amber-700 border border-amber-100;
+  }
+  
+  .status-resolved {
+    @apply bg-emerald-50 text-emerald-700 border border-emerald-100;
+  }
+  
+  .priority-low {
+    @apply bg-primary-50 text-primary-600 border border-primary-100;
+  }
+  
+  .priority-medium {
+    @apply bg-amber-50 text-amber-700 border border-amber-100;
+  }
+  
+  .priority-high {
+    @apply bg-orange-50 text-orange-700 border border-orange-100;
+  }
+  
+  .priority-critical {
+    @apply bg-red-50 text-red-700 border border-red-100;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply text-primary-800;
+  }
+  
+  .shadow-soft {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
+  }
+}
