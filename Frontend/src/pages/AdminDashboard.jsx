@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
+import { API_BASE_URL } from '../config'
 import StatsCard from '../components/StatsCard'
 import TicketsTable from '../components/TicketsTable'
 import UsersTable from '../components/UsersTable'
@@ -25,10 +26,10 @@ export default function AdminDashboard() {
       
       // Fetch tickets and users in parallel
       const [ticketsResponse, usersResponse] = await Promise.all([
-        fetch('/tickets', {
+        fetch(`${API_BASE_URL}/tickets`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch('/users', {
+        fetch(`${API_BASE_URL}/users`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ])

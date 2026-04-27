@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useAuth } from '../hooks/useAuth'
+import { API_BASE_URL } from '../config'
 
 export default function TicketForm({ onSuccess, onCancel }) {
   const { user } = useAuth()
@@ -24,7 +25,7 @@ export default function TicketForm({ onSuccess, onCancel }) {
         prioridad: data.prioridad || 'media',
       }
 
-      const response = await fetch('/tickets', {
+      const response = await fetch(`${API_BASE_URL}/tickets`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

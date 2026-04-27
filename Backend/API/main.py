@@ -18,11 +18,24 @@ app = FastAPI(
     description="API robusta para el control de personal y mantenimiento técnico del aeropuerto."
 )
 
-# Configuración CORS - permite el frontend de Replit y desarrollo local
+# ============================================================
+# CONFIGURACIÓN CORS
+# ============================================================
+# En producción, definir FRONTEND_URL con el dominio público de Vercel
+# (puede ser una sola URL o varias separadas por coma).
+# Si no se define, se permite cualquier origen (modo dev).
+_frontend_url_env = os.getenv("FRONTEND_URL", "").strip()
+if _frontend_url_env:
+    _allowed_origins = [o.strip() for o in _frontend_url_env.split(",") if o.strip()]
+    _allow_credentials = True
+else:
+    _allowed_origins = ["*"]
+    _allow_credentials = False
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origins=_allowed_origins,
+    allow_credentials=_allow_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )

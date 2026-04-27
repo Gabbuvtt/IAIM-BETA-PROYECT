@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
+import { API_BASE_URL } from '../config'
 import StatsCard from '../components/StatsCard'
 import TicketsTable from '../components/TicketsTable'
 import TicketForm from '../components/TicketForm'
@@ -22,7 +23,7 @@ export default function TechnicianDashboard() {
     try {
       const token = localStorage.getItem('token') || ''
       
-      const response = await fetch('/tickets', {
+      const response = await fetch(`${API_BASE_URL}/tickets`, {
         headers: { Authorization: `Bearer ${token}` },
       })
 

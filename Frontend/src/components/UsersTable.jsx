@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Edit, Trash2, Shield, UserCheck, Wrench } from 'lucide-react'
+import { API_BASE_URL } from '../config'
 
 export default function UsersTable({ users, onUpdate }) {
   const [selectedUser, setSelectedUser] = useState(null)
@@ -39,7 +40,7 @@ export default function UsersTable({ users, onUpdate }) {
 
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`/users/${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/users/${userId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -183,7 +184,7 @@ function UserForm({ user, onSuccess, onCancel }) {
 
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`/users/${user.id}`, {
+      const response = await fetch(`${API_BASE_URL}/users/${user.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

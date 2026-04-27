@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Edit, Trash2, Eye, Clock, CheckCircle, AlertTriangle } from 'lucide-react'
+import { API_BASE_URL } from '../config'
 
 export default function TicketsTable({ tickets, isAdmin, onUpdate }) {
   const [selectedTicket, setSelectedTicket] = useState(null)
@@ -54,7 +55,7 @@ export default function TicketsTable({ tickets, isAdmin, onUpdate }) {
   const handleUpdateStatus = async (ticketId, newStatus) => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`/tickets/${ticketId}`, {
+      const response = await fetch(`${API_BASE_URL}/tickets/${ticketId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +80,7 @@ export default function TicketsTable({ tickets, isAdmin, onUpdate }) {
 
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`/tickets/${ticketId}`, {
+      const response = await fetch(`${API_BASE_URL}/tickets/${ticketId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
