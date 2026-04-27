@@ -59,8 +59,3 @@ externalPort = 8000
 deploymentTarget = "autoscale"
 run = ["bash", "-c", "cd Backend && uvicorn API.main:app --host 0.0.0.0 --port 5000"]
 build = ["bash", "-c", "cd Frontend && npm install && npm run build"]
-
-[userenv]
-
-[userenv.shared]
-SECRET_KEY = "24Yp-h9_C73mYVst9mG69a0uJk8RzW-wY-lC2S6fL_mG7B5P3q1u4X6v9N8z0A2B4C6D8E0F1G2H3I4J5K6L7M8N9O0P1Q2R3S4T5U6V7W8X9Y0Z"

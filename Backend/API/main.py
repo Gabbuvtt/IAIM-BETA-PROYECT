@@ -52,6 +52,15 @@ models.Base.metadata.create_all(bind=engine)
 # ENDPOINTS PRINCIPALES (ROOT)
 # ============================================================
 
+@app.get("/health")
+def health_check():
+    """
+    Endpoint ligero de health check.
+    No toca la base de datos: úsalo en Render, UptimeRobot, etc.
+    """
+    return {"status": "ok"}
+
+
 @app.get("/api")
 def api_root():
     """
