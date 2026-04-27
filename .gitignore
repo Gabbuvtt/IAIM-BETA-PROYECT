@@ -1,167 +1,134 @@
 # ==========================================
-# GITIGNORE PARA PROYECTO IAIM
+# .gitignore - Proyecto IAIM (Frontend Vite + Backend FastAPI)
 # ==========================================
 
+# ------------------------------------------
+# Variables de entorno (NUNCA commitear)
+# ------------------------------------------
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+# Importante: los archivos .env.example SÍ se versionan.
+
+# ------------------------------------------
+# Replit (estado interno y dependencias instaladas)
+# ------------------------------------------
+.agents/
+.cache/
+.local/
+.pythonlibs/
+.upm/
+.config/
+.breakpoints
+__replit_disk_meta__.json
+
+# ------------------------------------------
 # Python
+# ------------------------------------------
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
 .eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
 *.egg-info/
-.installed.cfg
 *.egg
+.installed.cfg
 MANIFEST
 
-# PyInstaller
+# Empaquetado / distribución (Python)
+build/
+develop-eggs/
+downloads/
+eggs/
+sdist/
+wheels/
+share/python-wheels/
 *.manifest
 *.spec
 
-# Unit test / coverage reports
+# Test / coverage (Python)
 htmlcov/
 .tox/
 .nox/
 .coverage
 .coverage.*
-.cache
+.hypothesis/
+.pytest_cache/
 nosetests.xml
 coverage.xml
 *.cover
 *.py,cover
-.hypothesis/
-.pytest_cache/
 cover/
 
-# Virtual environments
+# Entornos virtuales
 venv/
 env/
 ENV/
+.venv/
 env.bak/
 venv.bak/
-.venv/
 
-# IDEs
+# ------------------------------------------
+# Node.js / Frontend (Vite)
+# ------------------------------------------
+node_modules/
+.pnp
+.pnp.js
+.yarn-integrity
+.npm
+.eslintcache
+.stylelintcache
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build output del frontend
+Frontend/dist/
+Frontend/dist-ssr/
+Frontend/.vite/
+
+# Coverage / cachés
+coverage/
+*.lcov
+.nyc_output/
+.parcel-cache/
+*.tsbuildinfo
+
+# ------------------------------------------
+# Bases de datos locales (no debería haber, pero por si acaso)
+# ------------------------------------------
+*.db
+*.sqlite
+*.sqlite3
+
+# ------------------------------------------
+# Editores e IDEs
+# ------------------------------------------
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
 
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Logs
-*.log
-logs/
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
-
-# Node.js (para frontend)
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-.pnpm-debug.log*
-
-# Next.js (para frontend)
-.next/
-out/
-build/
-dist/
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
-coverage/
-*.lcov
-
-# nyc test coverage
-.nyc_output
-
-# Dependency directories
-jspm_packages/
-
-# TypeScript cache
-*.tsbuildinfo
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Optional stylelint cache
-.stylelintcache
-
-# Microbundle cache
-.rpt2_cache/
-.rts2_cache_cjs/
-.rts2_cache_es/
-.rts2_cache_umd/
-
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# dotenv environment variable files
-.env.test
-
-# parcel-bundler cache (https://parceljs.org/)
-.cache
-.parcel-cache
-
-# Next.js build output
-.next
-out
-
-# Nuxt.js build / generate output
-.nuxt
-dist
-
-# Gatsby files
-.cache/
-public
-
-# Storybook build outputs
-.out
-.storybook-out
-storybook-static
-
-# Temporary folders
-tmp/
-temp/
-
-# OS generated files
+# ------------------------------------------
+# Sistema operativo
+# ------------------------------------------
 .DS_Store
 .DS_Store?
 ._*
@@ -170,15 +137,19 @@ temp/
 ehthumbs.db
 Thumbs.db
 
-# Backup files
+# ------------------------------------------
+# Backups y temporales
+# ------------------------------------------
 *.bak
 *.backup
 *.old
+tmp/
+temp/
 
-# Telegram bot tokens y credenciales
+# ------------------------------------------
+# Credenciales sueltas (defensa en profundidad)
+# ------------------------------------------
 config.json
 credentials.json
 telegram_config.json
-
-# Supabase credentials
 supabase_config.json
