@@ -22,7 +22,7 @@ export default function TechnicianDashboard() {
     try {
       const token = localStorage.getItem('token') || ''
       
-      const response = await fetch('http://localhost:8001/tickets', {
+      const response = await fetch('/tickets', {
         headers: { Authorization: `Bearer ${token}` },
       })
 

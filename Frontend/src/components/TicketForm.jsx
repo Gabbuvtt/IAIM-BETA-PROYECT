@@ -24,7 +24,7 @@ export default function TicketForm({ onSuccess, onCancel }) {
         prioridad: data.prioridad || 'media',
       }
 
-      const response = await fetch('http://localhost:8001/tickets', {
+      const response = await fetch('/tickets', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

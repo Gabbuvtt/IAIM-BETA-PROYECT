@@ -39,7 +39,7 @@ export default function UsersTable({ users, onUpdate }) {
 
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`http://localhost:8001/users/${userId}`, {
+      const response = await fetch(`/users/${userId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -183,7 +183,7 @@ function UserForm({ user, onSuccess, onCancel }) {
 
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`http://localhost:8001/users/${user.id}`, {
+      const response = await fetch(`/users/${user.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

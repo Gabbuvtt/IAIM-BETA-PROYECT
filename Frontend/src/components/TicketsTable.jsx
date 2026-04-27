@@ -54,7 +54,7 @@ export default function TicketsTable({ tickets, isAdmin, onUpdate }) {
   const handleUpdateStatus = async (ticketId, newStatus) => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`http://localhost:8001/tickets/${ticketId}`, {
+      const response = await fetch(`/tickets/${ticketId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ export default function TicketsTable({ tickets, isAdmin, onUpdate }) {
 
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`http://localhost:8001/tickets/${ticketId}`, {
+      const response = await fetch(`/tickets/${ticketId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -25,10 +25,10 @@ export default function AdminDashboard() {
       
       // Fetch tickets and users in parallel
       const [ticketsResponse, usersResponse] = await Promise.all([
-        fetch('http://localhost:8001/tickets', {
+        fetch('/tickets', {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch('http://localhost:8001/users', {
+        fetch('/users', {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ])
