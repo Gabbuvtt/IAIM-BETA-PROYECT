@@ -98,6 +98,7 @@ El proxy de Vite (`vite.config.js`) reenvía `/auth`, `/users`, `/tickets`, `/do
    | `SECRET_KEY` | Tu clave aleatoria (mínimo 64 chars) |
    | `ACCESS_TOKEN_EXPIRE_MINUTES` | `60` |
    | `FRONTEND_URL` | (déjala vacía hasta tener la URL de Vercel) |
+   | `LOG_LEVEL` | `INFO` (usa `DEBUG` solo para depurar) |
    | `PYTHON_VERSION` | `3.12` |
 5. Despliega. Anota la URL pública (ej. `https://iaim-backend.onrender.com`).
 

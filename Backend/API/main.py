@@ -1,5 +1,8 @@
+import logging
 import os
-from fastapi import FastAPI, Depends, HTTPException, status
+import time
+import uuid
+from fastapi import FastAPI, Depends, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -10,13 +13,66 @@ from typing import List
 from Auth.Login import login
 from . import models, schemas, database
 from .database import get_db, engine
+from .logging_config import configure_logging
 from .routers import users, tickets
+
+# Configura el logging estructurado (JSON) lo antes posible.
+configure_logging()
+logger = logging.getLogger("iaim.api")
 
 # Inicialización de la aplicación FastAPI
 app = FastAPI(
     title="Sistema de Gestión de Tickets - IAIM",
     description="API robusta para el control de personal y mantenimiento técnico del aeropuerto."
 )
+
+
+# ============================================================
+# MIDDLEWARE: LOG ESTRUCTURADO POR REQUEST
+# ============================================================
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    """
+    Registra cada petición HTTP en formato JSON con método, ruta, status,
+    duración en ms y un request_id único (útil para correlacionar logs).
+    """
+    request_id = request.headers.get("x-request-id") or uuid.uuid4().hex[:12]
+    start = time.perf_counter()
+    client_host = request.client.host if request.client else None
+
+    try:
+        response = await call_next(request)
+    except Exception:
+        duration_ms = round((time.perf_counter() - start) * 1000, 2)
+        logger.exception(
+            "request failed",
+            extra={
+                "request_id": request_id,
+                "method": request.method,
+                "path": request.url.path,
+                "duration_ms": duration_ms,
+                "client": client_host,
+            },
+        )
+        raise
+
+    duration_ms = round((time.perf_counter() - start) * 1000, 2)
+    response.headers["x-request-id"] = request_id
+
+    # Health checks no merecen ruido a nivel INFO; bajan a DEBUG.
+    log_method = logger.debug if request.url.path == "/health" else logger.info
+    log_method(
+        "request",
+        extra={
+            "request_id": request_id,
+            "method": request.method,
+            "path": request.url.path,
+            "status": response.status_code,
+            "duration_ms": duration_ms,
+            "client": client_host,
+        },
+    )
+    return response
 
 # ============================================================
 # CONFIGURACIÓN CORS
